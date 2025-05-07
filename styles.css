@@ -342,10 +342,6 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .customize-form-container {
-        flex-direction: column;
-    }
-    
     .cta-buttons {
         display: flex;
         flex-direction: column;
@@ -357,5 +353,35 @@ footer {
     
     .secondary-cta {
         margin-left: 0;
+    }
+
+    .customize-form-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-column,
+    .preview-column {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .preview-column iframe, 
+    .preview-column div {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .section-heading,
+    .support-section, 
+    .support-section * {
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .support-section .bmc-button {
+        display: inline-block;
+        margin-top: 10px;
     }
 }

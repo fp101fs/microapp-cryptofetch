@@ -182,6 +182,49 @@
         </div>
     </section>
     
+    <section class="tip-jar" id="support">
+        <div class="container">
+            <h2 class="section-heading">Support This Project</h2>
+            <p class="tip-description">CryptoFetch is free and open-source. If you find it useful, consider buying me a coffee!</p>
+            
+            <div class="tip-options">
+                <a href="#" class="cta-button tip-button">Buy Me a Coffee</a>
+            </div>
+            
+            <div class="crypto-addresses">
+                <h3>Or send a crypto tip:</h3>
+                <div class="crypto-address-cards">
+                    <div class="crypto-card">
+                        <div class="crypto-icon">₿</div>
+                        <h4>Bitcoin</h4>
+                        <div class="address-container">
+                            <code class="crypto-address">bc1q9n7f6z9h6ykw...</code>
+                            <button class="copy-address" data-address="bc1q9n7f6z9h6ykw0nzxkcdpy3zk9lkcj9khwv50r3">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="crypto-card">
+                        <div class="crypto-icon">Ξ</div>
+                        <h4>Ethereum</h4>
+                        <div class="address-container">
+                            <code class="crypto-address">0x742d35Cc6634C0...</code>
+                            <button class="copy-address" data-address="0x742d35Cc6634C0532A7B742F65B63D43b76D9668">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <div class="crypto-card">
+                        <div class="crypto-icon">⚡</div>
+                        <h4>Lightning</h4>
+                        <div class="address-container">
+                            <code class="crypto-address">cryptofetch@stac...</code>
+                            <button class="copy-address" data-address="cryptofetch@stacker.news">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <footer>
         <div class="container">
             <p>© 2025 CryptoFetch - The Free Cryptocurrency Widget</p>
@@ -288,6 +331,23 @@
                 
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <!-- Crypto Tip Jar Copy Address Script -->
+    <script>
+        // Add event listeners to copy crypto address buttons
+        document.querySelectorAll('.copy-address').forEach(button => {
+            button.addEventListener('click', function() {
+                const address = this.getAttribute('data-address');
+                navigator.clipboard.writeText(address).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
                 });
             });
         });
