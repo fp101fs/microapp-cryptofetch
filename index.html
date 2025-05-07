@@ -3,124 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoFetch Embed Generator</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        select, input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        #embedCode {
-            width: 100%;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-family: monospace;
-        }
-        #copyButton {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        #copyButton:hover {
-            background-color: #0056b3;
-        }
-        #previewContainer {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: center;
-        }
-    </style>
+    <meta name="description" content="Add live cryptocurrency prices to your website in seconds with CryptoFetch - the simple, fast and free crypto widget">
+    <title>CryptoFetch | Add Live Crypto Prices to Any Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>CryptoFetch Embed Generator</h1>
-    <p>Create your custom cryptocurrency price widget below:</p>
-
-    <div class="form-group">
-        <label for="coinSelect">Cryptocurrency:</label>
-        <select id="coinSelect">
-            <option value="bitcoin">Bitcoin (BTC)</option>
-            <option value="ethereum">Ethereum (ETH)</option>
-            <option value="cardano">Cardano (ADA)</option>
-            <option value="binancecoin">Binance Coin (BNB)</option>
-            <option value="solana">Solana (SOL)</option>
-            <option value="dogecoin">Dogecoin (DOGE)</option>
-            <option value="ripple">Ripple (XRP)</option>
-            <option value="polkadot">Polkadot (DOT)</option>
-            <optgroup label="Other">
-                <option value="custom">Custom Coin ID</option>
-            </optgroup>
-        </select>
-    </div>
-
-    <div id="customCoinGroup" style="display: none;">
-        <label for="customCoinInput">Custom Coin ID:</label>
-        <input type="text" id="customCoinInput" placeholder="Enter exact CoinGecko coin ID">
-    </div>
-
-    <div class="form-group">
-        <label for="currencySelect">Currency:</label>
-        <select id="currencySelect">
-            <option value="usd">US Dollar (USD)</option>
-            <option value="eur">Euro (EUR)</option>
-            <option value="gbp">British Pound (GBP)</option>
-            <option value="jpy">Japanese Yen (JPY)</option>
-            <option value="custom">Custom Currency</option>
-        </select>
-    </div>
-
-    <div id="customCurrencyGroup" style="display: none;">
-        <label for="customCurrencyInput">Custom Currency Code:</label>
-        <input type="text" id="customCurrencyInput" placeholder="Enter 3-letter currency code">
-    </div>
-
-    <div class="form-group">
-        <label>Options:</label>
-        <div>
-            <input type="checkbox" id="showNameCheckbox" checked>
-            <label for="showNameCheckbox" style="display: inline;">Show Coin Name</label>
+    <header>
+        <div class="container">
+            <div class="logo">CryptoFetch</div>
+            <h1 class="tagline">Add Live Crypto Prices to Your Website in Just 5 Seconds</h1>
+            <div class="cta-buttons">
+                <a href="#customize" class="cta-button">Get Your Widget</a>
+                <a href="https://github.com/cryptofetch" class="secondary-cta">View on GitHub</a>
+            </div>
         </div>
-        <div>
-            <input type="checkbox" id="showChangeCheckbox">
-            <label for="showChangeCheckbox" style="display: inline;">Show 24h Price Change</label>
+    </header>
+    
+    <section class="features">
+        <div class="container">
+            <h2 class="section-heading">Why Choose CryptoFetch?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Super Fast</h3>
+                    <p>Lightweight and optimized to load instantly, without affecting your page speed</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Easy to Customize</h3>
+                    <p>Change coins, currencies, and display options with simple parameters</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Real-Time Updates</h3>
+                    <p>Always displays the latest crypto prices with smart caching</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">No API Key Needed</h3>
+                    <p>Works out of the box without registration or complex setup</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+    
+    <section class="demo" id="demo">
+        <div class="container">
+            <h2 class="section-heading">See It In Action</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Here's how CryptoFetch looks on your website</p>
+            <div class="demo-container">
+                <div class="cryptofetch-widget" data-coin="bitcoin" data-currency="usd" data-show-name="true" data-show-change="true"></div>
+                <div class="cryptofetch-widget" data-coin="ethereum" data-currency="usd" data-show-name="true" data-show-change="true"></div>
+                <div class="cryptofetch-widget" data-coin="solana" data-currency="usd" data-show-name="true" data-show-change="true"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-heading">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Customize</h3>
+                    <p>Choose your cryptocurrency, currency, and display options</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Copy</h3>
+                    <p>Grab your personalized embed code with one click</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Paste</h3>
+                    <p>Add the code to your website or blog and you're done!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="customize" id="customize">
+        <div class="container">
+            <h2 class="section-heading">Create Your Widget</h2>
+            <div class="customize-form-container">
+                <div class="form-column">
+                    <div class="card">
+                        <div class="form-group">
+                            <label for="coinSelect">Cryptocurrency:</label>
+                            <select id="coinSelect">
+                                <option value="bitcoin">Bitcoin (BTC)</option>
+                                <option value="ethereum">Ethereum (ETH)</option>
+                                <option value="cardano">Cardano (ADA)</option>
+                                <option value="binancecoin">Binance Coin (BNB)</option>
+                                <option value="solana">Solana (SOL)</option>
+                                <option value="dogecoin">Dogecoin (DOGE)</option>
+                                <option value="ripple">Ripple (XRP)</option>
+                                <option value="polkadot">Polkadot (DOT)</option>
+                                <optgroup label="Other">
+                                    <option value="custom">Custom Coin ID</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div id="customCoinGroup" style="display: none;">
+                            <div class="form-group">
+                                <label for="customCoinInput">Custom Coin ID:</label>
+                                <input type="text" id="customCoinInput" placeholder="Enter exact CoinGecko coin ID">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currencySelect">Currency:</label>
+                            <select id="currencySelect">
+                                <option value="usd">US Dollar (USD)</option>
+                                <option value="eur">Euro (EUR)</option>
+                                <option value="gbp">British Pound (GBP)</option>
+                                <option value="jpy">Japanese Yen (JPY)</option>
+                                <option value="custom">Custom Currency</option>
+                            </select>
+                        </div>
+                        
+                        <div id="customCurrencyGroup" style="display: none;">
+                            <div class="form-group">
+                                <label for="customCurrencyInput">Custom Currency Code:</label>
+                                <input type="text" id="customCurrencyInput" placeholder="Enter 3-letter currency code">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Options:</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="showNameCheckbox" checked>
+                                <label for="showNameCheckbox">Show Coin Name</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="showChangeCheckbox" checked>
+                                <label for="showChangeCheckbox">Show 24h Price Change</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preview-column">
+                    <div class="card">
+                        <h3 class="preview-title">Your Widget Preview</h3>
+                        <div id="previewWidget" class="cryptofetch-widget"></div>
+                        
+                        <h3 style="margin-top: 30px;">Embed Code</h3>
+                        <div id="embedCode"></div>
+                        <button id="copyButton">Copy Embed Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="trust-signals">
+        <div class="container">
+            <h2 class="section-heading">Trusted By Developers</h2>
+            <div class="badges">
+                <div class="badge">
+                    <span class="badge-icon">⚙️</span>
+                    <span>Open Source</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">🚀</span>
+                    <span>Lightweight (4kb)</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">🔒</span>
+                    <span>SSL Secure</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">📱</span>
+                    <span>Mobile Friendly</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 CryptoFetch - The Free Cryptocurrency Widget</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">GitHub</a>
+                <a href="#" class="footer-link">Report Issue</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <p style="opacity: 0.7; font-size: 0.9rem;">Powered by CoinGecko API</p>
+        </div>
+    </footer>
 
-    <h2>Embed Code:</h2>
-    <div id="embedCode"></div>
-    <button id="copyButton">Copy Embed Code</button>
-
-    <div id="previewContainer">
-        <h3>Live Preview:</h3>
-        <div id="previewWidget" class="cryptofetch-widget"></div>
-    </div>
-
+    <!-- Scripts -->
     <script>
         // UI Elements
         const coinSelect = document.getElementById('coinSelect');
@@ -138,11 +213,13 @@
         // Toggle custom coin input
         coinSelect.addEventListener('change', () => {
             customCoinGroup.style.display = coinSelect.value === 'custom' ? 'block' : 'none';
+            updateEmbedCode();
         });
 
         // Toggle custom currency input
         currencySelect.addEventListener('change', () => {
             customCurrencyGroup.style.display = currencySelect.value === 'custom' ? 'block' : 'none';
+            updateEmbedCode();
         });
 
         // Generate and update embed code
@@ -168,7 +245,7 @@
             // Generate embed code
             const embedCodeText = `<!-- CryptoFetch Widget -->
 <div class="cryptofetch-widget" ${dataAttrs.join(' ')}></div>
-<script src="https://fp101fs.github.io/microapp-cryptofetch/cryptofetch.js"><\/script>`;
+<script src="https://cdn.cryptofetch.io/widget.js"><\/script>`;
 
             // Update embed code display
             embedCodeElement.textContent = embedCodeText;
@@ -179,7 +256,7 @@
             previewWidget.dataset.showName = showNameCheckbox.checked;
             previewWidget.dataset.showChange = showChangeCheckbox.checked;
 
-            // Trigger CryptoFetch refresh
+            // Trigger CryptoFetch refresh if available
             if (window.CryptoFetch) {
                 window.CryptoFetch.refresh();
             }
@@ -196,15 +273,24 @@
         });
 
         // Initial setup and event listeners
-        coinSelect.addEventListener('change', updateEmbedCode);
         customCoinInput.addEventListener('input', updateEmbedCode);
-        currencySelect.addEventListener('change', updateEmbedCode);
         customCurrencyInput.addEventListener('input', updateEmbedCode);
         showNameCheckbox.addEventListener('change', updateEmbedCode);
         showChangeCheckbox.addEventListener('change', updateEmbedCode);
 
         // Initial update
         updateEmbedCode();
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 
     <!-- CryptoFetch Widget Script -->
