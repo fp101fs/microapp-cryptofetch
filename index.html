@@ -10,7 +10,10 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">CryptoFetch</div>
+            <div class="logo" style="text-align: center;">
+                <div>CryptoFetch</div>
+                <img src="cryptofetch.png" alt="CryptoFetch Logo" style="height: 100px; margin-top: 10px;">
+            </div>
             <h1 class="tagline">Add Live Crypto Prices to Your Website in Just 5 Seconds</h1>
             <div class="cta-buttons">
                 <a href="#customize" class="cta-button">Get Your Widget</a>
@@ -18,6 +21,8 @@
             </div>
         </div>
     </header>
+
+
     
     <section class="features">
         <div class="container">
@@ -25,13 +30,8 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Super Fast</h3>
-                    <p>Lightweight and optimized to load instantly, without affecting your page speed</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3 class="feature-title">Easy to Customize</h3>
-                    <p>Change coins, currencies, and display options with simple parameters</p>
+                    <h3 class="feature-title">Fast & Customizable</h3>
+                    <p>Lightweight, optimized to load instantly, and customizable</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔄</div>
@@ -305,16 +305,62 @@
             }
         }
 
-        // Copy embed code
-        copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(embedCodeElement.textContent).then(() => {
-                copyButton.textContent = 'Copied!';
-                setTimeout(() => {
-                    copyButton.textContent = 'Copy Embed Code';
-                }, 2000);
-            });
-        });
+        // Fallback function for copying text to clipboard
+        function fallbackCopyTextToClipboard(text, buttonElement, originalText) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            
+            // Make the textarea out of viewport
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            
+            textArea.focus();
+            textArea.select();
+            
+            let successful = false;
+            try {
+                successful = document.execCommand('copy');
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+            
+            // Update button text based on success
+            if (successful) {
+                buttonElement.textContent = 'Copied!';
+            } else {
+                buttonElement.textContent = 'Copy failed';
+            }
+            
+            setTimeout(() => {
+                buttonElement.textContent = originalText || 'Copy Embed Code';
+            }, 2000);
+        }
 
+        // Copy embed code with clipboard API and fallback
+        copyButton.addEventListener('click', () => {
+            // Check if Clipboard API is supported
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(embedCodeElement.textContent)
+                    .then(() => {
+                        copyButton.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy Embed Code';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy: ', err);
+                        fallbackCopyTextToClipboard(embedCodeElement.textContent, copyButton);
+                    });
+            } else {
+                // Fallback for browsers that don't support the Clipboard API
+                fallbackCopyTextToClipboard(embedCodeElement.textContent, copyButton);
+            }
+        });
+        
         // Initial setup and event listeners
         customCoinInput.addEventListener('input', updateEmbedCode);
         customCurrencyInput.addEventListener('input', updateEmbedCode);
@@ -342,13 +388,25 @@
         document.querySelectorAll('.copy-address').forEach(button => {
             button.addEventListener('click', function() {
                 const address = this.getAttribute('data-address');
-                navigator.clipboard.writeText(address).then(() => {
-                    const originalText = this.textContent;
-                    this.textContent = 'Copied!';
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                    }, 2000);
-                });
+                const originalText = this.textContent;
+                
+                // Check if Clipboard API is supported
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(address)
+                        .then(() => {
+                            this.textContent = 'Copied!';
+                            setTimeout(() => {
+                                this.textContent = originalText;
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy: ', err);
+                            fallbackCopyTextToClipboard(address, this, originalText);
+                        });
+                } else {
+                    // Fallback for browsers that don't support the Clipboard API
+                    fallbackCopyTextToClipboard(address, this, originalText);
+                }
             });
         });
     </script>
